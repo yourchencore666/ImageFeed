@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController {
     
     // MARK: - IBOutlets
     @IBOutlet weak var profileImage: UIImageView!
@@ -30,3 +30,4 @@ final class ProfileViewController: UIViewController {
     }
     // MARK: - Table View Data Source
 }
+
