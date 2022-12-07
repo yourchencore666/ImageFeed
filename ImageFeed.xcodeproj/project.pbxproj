@@ -15,6 +15,7 @@
 		1E8EE0CF292B6B7800DEF9BD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E8EE0CD292B6B7800DEF9BD /* LaunchScreen.storyboard */; };
 		1E8EE0F7292CBC0800DEF9BD /* ImagesListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8EE0F6292CBC0800DEF9BD /* ImagesListCell.swift */; };
 		1E8EE141293F038000DEF9BD /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8EE140293F038000DEF9BD /* ProfileViewController.swift */; };
+		1E922C0B293F7C1600480F71 /* SingleImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E922C0A293F7C1600480F71 /* SingleImageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		1E8EE0D0292B6B7800DEF9BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1E8EE0F6292CBC0800DEF9BD /* ImagesListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListCell.swift; sourceTree = "<group>"; };
 		1E8EE140293F038000DEF9BD /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		1E922C0A293F7C1600480F71 /* SingleImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleImageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 			children = (
 				1E8EE0F6292CBC0800DEF9BD /* ImagesListCell.swift */,
 				1E8EE0C6292B6B7600DEF9BD /* ImagesListViewController.swift */,
+				1E922C0A293F7C1600480F71 /* SingleImageViewController.swift */,
 			);
 			path = ImageList;
 			sourceTree = "<group>";
@@ -164,6 +167,7 @@
 				1E8EE0F7292CBC0800DEF9BD /* ImagesListCell.swift in Sources */,
 				1E8EE141293F038000DEF9BD /* ProfileViewController.swift in Sources */,
 				1E8EE0C3292B6B7600DEF9BD /* AppDelegate.swift in Sources */,
+				1E922C0B293F7C1600480F71 /* SingleImageViewController.swift in Sources */,
 				1E8EE0C5292B6B7600DEF9BD /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
