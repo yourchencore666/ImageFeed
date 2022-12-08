@@ -8,5 +8,17 @@
 import UIKit
 
 final class SingleImageViewController: UIViewController {
+    var image: UIImage! {
+        didSet {
+            guard isViewLoaded else {return} // загружено ли view
+            imageView.image = image // попадаем сюда если был загружен SingleImageViewController
+        }
+    }
     
+    @IBOutlet weak var imageView: UIImageView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        imageView.image = image
+    }
 }

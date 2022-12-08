@@ -7,13 +7,14 @@
 
 import UIKit
 
-class ImagesListViewController: UIViewController {
+final class ImagesListViewController: UIViewController {
     // MARK: - IBOutlets
     @IBOutlet private var tableView: UITableView!
     
     // MARK: - Public Properties
     
     // MARK: - Private Properties
+    private let showSingleImageSegueIdentifier = "ShowSingleImage"
     private var photosName = [String]()
     private lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -28,6 +29,18 @@ class ImagesListViewController: UIViewController {
         photosName = Array(0..<20).map{ "\($0)" }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == showSingleImageSegueIdentifier { // проверяем идентификатор сегвея
+            let viewController = segue.destination as! SingleImageViewController // Делаем преобразования типа для свойства segue.destination к тому типу, который мы ожидаем
+            let indexPath = sender as! IndexPath // Делаем преобразование типа для аргумента sender (мы ожидаем, что там будет indexPath)
+            let image = UIImage(named: photosName[indexPath.row]) // Получаем по индексу название картинки и саму картинку из ресурсов приложения;
+            //_ = viewController.view // хак чтобы инициализировать view до инициализации prepareForSegue
+            viewController.image = image // Передаём эту картинку в imageView внутри SingleImageViewController
+        } else {
+            super.prepare(for: segue, sender: sender) // Если это неизвестный сегвей, то определяем родительским классом и передаем ему управление.
+        }
+    }
+    
     // MARK: - Private Methods
     
     // MARK: - IBActions
@@ -39,6 +52,7 @@ class ImagesListViewController: UIViewController {
 extension ImagesListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        performSegue(withIdentifier: showSingleImageSegueIdentifier, sender: indexPath)
     }
    
 }
