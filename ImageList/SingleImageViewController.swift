@@ -8,6 +8,7 @@
 import UIKit
 
 final class SingleImageViewController: UIViewController {
+    
     var image: UIImage! {
         didSet {
             guard isViewLoaded else {return} // загружено ли view
@@ -16,6 +17,7 @@ final class SingleImageViewController: UIViewController {
     }
     
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
