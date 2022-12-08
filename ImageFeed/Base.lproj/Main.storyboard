@@ -99,7 +99,7 @@
                     <navigationItem key="navigationItem" id="xPw-KI-ta6"/>
                     <connections>
                         <outlet property="tableView" destination="Hc9-Vf-GYE" id="vI4-U1-idC"/>
-                        <segue destination="Cbm-8V-E6R" kind="show" identifier="ShowSingleImage" id="jzg-Ma-ACF"/>
+                        <segue destination="Cbm-8V-E6R" kind="presentation" identifier="ShowSingleImage" id="jzg-Ma-ACF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -186,22 +186,38 @@
         <!--SingleImageViewController-->
         <scene sceneID="BZj-en-Nwj">
             <objects>
-                <viewController id="Cbm-8V-E6R" userLabel="SingleImageViewController" customClass="SingleImageViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="Cbm-8V-E6R" userLabel="SingleImageViewController" customClass="SingleImageViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Za7-aC-uBM">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="0" translatesAutoresizingMaskIntoConstraints="NO" id="6Hb-WE-vCf" userLabel="Image View">
-                                <rect key="frame" x="0.0" y="88" width="428" height="755"/>
+                                <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pQf-zd-UBg">
+                                <rect key="frame" x="9" y="53" width="24" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="Ovh-JJ-QD3"/>
+                                    <constraint firstAttribute="width" constant="24" id="oHj-0x-z7D"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="chevron.backward" catalog="system" title="">
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="didTapBackButton" destination="Cbm-8V-E6R" eventType="touchUpInside" id="FsV-gm-T49"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ohU-5z-sMm"/>
                         <color key="backgroundColor" name="YP Black"/>
                         <constraints>
-                            <constraint firstItem="ohU-5z-sMm" firstAttribute="bottom" secondItem="6Hb-WE-vCf" secondAttribute="bottom" id="isy-9p-IX0"/>
-                            <constraint firstItem="6Hb-WE-vCf" firstAttribute="leading" secondItem="ohU-5z-sMm" secondAttribute="leading" id="mAx-GX-kLf"/>
-                            <constraint firstItem="6Hb-WE-vCf" firstAttribute="top" secondItem="ohU-5z-sMm" secondAttribute="top" id="ulR-M0-iil"/>
-                            <constraint firstItem="ohU-5z-sMm" firstAttribute="trailing" secondItem="6Hb-WE-vCf" secondAttribute="trailing" id="vZT-p1-Zdd"/>
+                            <constraint firstAttribute="bottom" secondItem="6Hb-WE-vCf" secondAttribute="bottom" id="isy-9p-IX0"/>
+                            <constraint firstItem="pQf-zd-UBg" firstAttribute="top" secondItem="ohU-5z-sMm" secondAttribute="top" constant="9" id="jLJ-Bz-bBF"/>
+                            <constraint firstItem="6Hb-WE-vCf" firstAttribute="leading" secondItem="Za7-aC-uBM" secondAttribute="leading" id="mAx-GX-kLf"/>
+                            <constraint firstItem="pQf-zd-UBg" firstAttribute="leading" secondItem="ohU-5z-sMm" secondAttribute="leading" constant="9" id="ubK-cd-OBg"/>
+                            <constraint firstItem="6Hb-WE-vCf" firstAttribute="top" secondItem="Za7-aC-uBM" secondAttribute="top" id="ulR-M0-iil"/>
+                            <constraint firstAttribute="trailing" secondItem="6Hb-WE-vCf" secondAttribute="trailing" id="vZT-p1-Zdd"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="2Ow-HC-s21"/>
@@ -265,6 +281,7 @@
     <resources>
         <image name="0" width="200" height="132"/>
         <image name="UserPhoto" width="70" height="70"/>
+        <image name="chevron.backward" catalog="system" width="96" height="128"/>
         <image name="ipad.and.arrow.forward" catalog="system" width="112" height="128"/>
         <image name="like_button_active" width="42" height="42"/>
         <image name="tab_editorial_active" width="30" height="30"/>
