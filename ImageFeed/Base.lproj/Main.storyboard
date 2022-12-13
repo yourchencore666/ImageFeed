@@ -109,7 +109,7 @@
         <!--ProfileView-->
         <scene sceneID="HoS-ED-RF0">
             <objects>
-                <viewController title="ProfileView" id="k94-4I-7iX" customClass="ProfileViewController.swift" sceneMemberID="viewController">
+                <viewController title="ProfileView" id="k94-4I-7iX" customClass="ProfileViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4PS-go-cuQ">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -127,13 +127,11 @@
                                     <constraint firstAttribute="height" constant="22" id="49g-Pm-pGh"/>
                                     <constraint firstAttribute="width" constant="20" id="cUv-EI-1fL"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="ipad.and.arrow.forward" catalog="system">
-                                    <color key="baseForegroundColor" name="YP Red"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="didTapLogoutButton:" destination="k94-4I-7iX" eventType="touchUpInside" id="wBS-y7-mta"/>
-                                </connections>
+                                <color key="tintColor" name="YP Red"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="ipad.and.arrow.forward" catalog="system">
+                                    <color key="titleColor" name="YP Red"/>
+                                </state>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Имя Фамилия" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="chW-nX-zRd">
                                 <rect key="frame" x="16" y="154" width="157.66666666666666" height="28"/>
@@ -172,11 +170,11 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="tab_profile_active" id="ktF-R8-8Fw"/>
                     <connections>
-                        <outlet property="descriptionLabel" destination="f6q-aT-Mfp" id="A20-Iq-fid"/>
-                        <outlet property="logoutButton" destination="kT6-Ek-syi" id="lrR-n1-gGS"/>
-                        <outlet property="profileImage" destination="gDz-pX-enV" id="qyl-bR-tsS"/>
-                        <outlet property="profileName" destination="chW-nX-zRd" id="14C-Ei-kgX"/>
-                        <outlet property="userNameLabel" destination="LaS-hE-3qS" id="x7b-zH-76G"/>
+                        <outlet property="logoutButton" destination="kT6-Ek-syi" id="X6d-zw-fGc"/>
+                        <outlet property="profileImage" destination="gDz-pX-enV" id="5O4-gJ-rSB"/>
+                        <outlet property="profileLabel" destination="chW-nX-zRd" id="fuA-TU-iIG"/>
+                        <outlet property="textLabel" destination="f6q-aT-Mfp" id="bIm-zs-Hda"/>
+                        <outlet property="userNameLabel" destination="LaS-hE-3qS" id="ybu-ai-9gT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1SR-iZ-HvK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -323,7 +321,7 @@
             <color red="0.10199999809265137" green="0.10599999874830246" blue="0.13300000131130219" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="YP Red">
-            <color red="0.95999999999999996" green="0.41999999999999998" blue="0.41999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.95999997854232788" green="0.41999998688697815" blue="0.41999998688697815" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemGray5Color">
             <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
