@@ -6,7 +6,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -113,69 +112,10 @@
                     <view key="view" contentMode="scaleToFill" id="4PS-go-cuQ">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UserPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="gDz-pX-enV" userLabel="Profile Image">
-                                <rect key="frame" x="16" y="76" width="70" height="70"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="70" id="1LL-1o-YQr"/>
-                                    <constraint firstAttribute="width" constant="70" id="3bk-mT-gDQ"/>
-                                </constraints>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kT6-Ek-syi">
-                                <rect key="frame" x="384" y="100" width="20" height="22"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="22" id="49g-Pm-pGh"/>
-                                    <constraint firstAttribute="width" constant="20" id="cUv-EI-1fL"/>
-                                </constraints>
-                                <color key="tintColor" name="YP Red"/>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" image="ipad.and.arrow.forward" catalog="system">
-                                    <color key="titleColor" name="YP Red"/>
-                                </state>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Имя Фамилия" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="chW-nX-zRd">
-                                <rect key="frame" x="16" y="154" width="157.66666666666666" height="28"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LaS-hE-3qS">
-                                <rect key="frame" x="16" y="190" width="71.666666666666671" height="16"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello World!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f6q-aT-Mfp">
-                                <rect key="frame" x="16" y="214" width="74" height="16"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <color key="textColor" systemColor="systemGray5Color"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="dCo-D1-aX4"/>
                         <color key="backgroundColor" name="YP Black"/>
-                        <constraints>
-                            <constraint firstItem="kT6-Ek-syi" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gDz-pX-enV" secondAttribute="trailing" constant="8" symbolic="YES" id="2gj-WX-RF5"/>
-                            <constraint firstItem="dCo-D1-aX4" firstAttribute="trailing" secondItem="kT6-Ek-syi" secondAttribute="trailing" constant="24" id="5UG-pC-k2t"/>
-                            <constraint firstItem="chW-nX-zRd" firstAttribute="leading" secondItem="dCo-D1-aX4" secondAttribute="leading" constant="16" id="DF1-ho-iZC"/>
-                            <constraint firstItem="gDz-pX-enV" firstAttribute="leading" secondItem="dCo-D1-aX4" secondAttribute="leading" constant="16" id="Eq4-Wq-10c"/>
-                            <constraint firstItem="f6q-aT-Mfp" firstAttribute="top" secondItem="LaS-hE-3qS" secondAttribute="bottom" constant="8" id="QW0-rE-APR"/>
-                            <constraint firstItem="f6q-aT-Mfp" firstAttribute="leading" secondItem="dCo-D1-aX4" secondAttribute="leading" constant="16" id="SRH-aD-N41"/>
-                            <constraint firstItem="LaS-hE-3qS" firstAttribute="leading" secondItem="dCo-D1-aX4" secondAttribute="leading" constant="16" id="Twu-1p-9QE"/>
-                            <constraint firstItem="chW-nX-zRd" firstAttribute="top" secondItem="gDz-pX-enV" secondAttribute="bottom" constant="8" id="YIu-tI-Eef"/>
-                            <constraint firstItem="LaS-hE-3qS" firstAttribute="top" secondItem="chW-nX-zRd" secondAttribute="bottom" constant="8" id="aMU-LO-ZGB"/>
-                            <constraint firstItem="gDz-pX-enV" firstAttribute="top" secondItem="dCo-D1-aX4" secondAttribute="top" constant="32" id="eoE-fO-kcA"/>
-                            <constraint firstItem="kT6-Ek-syi" firstAttribute="top" secondItem="dCo-D1-aX4" secondAttribute="top" constant="56" id="hzW-rp-B1h"/>
-                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="tab_profile_active" id="ktF-R8-8Fw"/>
-                    <connections>
-                        <outlet property="logoutButton" destination="kT6-Ek-syi" id="X6d-zw-fGc"/>
-                        <outlet property="profileImage" destination="gDz-pX-enV" id="5O4-gJ-rSB"/>
-                        <outlet property="profileLabel" destination="chW-nX-zRd" id="fuA-TU-iIG"/>
-                        <outlet property="textLabel" destination="f6q-aT-Mfp" id="bIm-zs-Hda"/>
-                        <outlet property="userNameLabel" destination="LaS-hE-3qS" id="ybu-ai-9gT"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1SR-iZ-HvK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -310,9 +250,7 @@
     </scenes>
     <resources>
         <image name="0" width="200" height="132"/>
-        <image name="UserPhoto" width="70" height="70"/>
         <image name="chevron.backward" catalog="system" width="96" height="128"/>
-        <image name="ipad.and.arrow.forward" catalog="system" width="112" height="128"/>
         <image name="like_button_active" width="42" height="42"/>
         <image name="sharing_button" width="51" height="51"/>
         <image name="tab_editorial_active" width="30" height="30"/>
@@ -320,11 +258,5 @@
         <namedColor name="YP Black">
             <color red="0.10199999809265137" green="0.10599999874830246" blue="0.13300000131130219" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="YP Red">
-            <color red="0.95999997854232788" green="0.41999998688697815" blue="0.41999998688697815" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <systemColor name="systemGray5Color">
-            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
     </resources>
 </document>

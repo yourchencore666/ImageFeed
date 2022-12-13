@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E08FE852948B0800073A9BF /* YS Display-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1E08FE832948B0800073A9BF /* YS Display-Bold.ttf */; };
+		1E08FE862948B0800073A9BF /* YS Display-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1E08FE842948B0800073A9BF /* YS Display-Medium.ttf */; };
 		1E8EE0C3292B6B7600DEF9BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8EE0C2292B6B7600DEF9BD /* AppDelegate.swift */; };
 		1E8EE0C5292B6B7600DEF9BD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8EE0C4292B6B7600DEF9BD /* SceneDelegate.swift */; };
 		1E8EE0C7292B6B7600DEF9BD /* ImagesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8EE0C6292B6B7600DEF9BD /* ImagesListViewController.swift */; };
@@ -19,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1E08FE832948B0800073A9BF /* YS Display-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "YS Display-Bold.ttf"; sourceTree = "<group>"; };
+		1E08FE842948B0800073A9BF /* YS Display-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "YS Display-Medium.ttf"; sourceTree = "<group>"; };
 		1E8EE0BF292B6B7600DEF9BD /* ImageFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E8EE0C2292B6B7600DEF9BD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1E8EE0C4292B6B7600DEF9BD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -43,9 +47,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1E08FE822948B0300073A9BF /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				1E08FE832948B0800073A9BF /* YS Display-Bold.ttf */,
+				1E08FE842948B0800073A9BF /* YS Display-Medium.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		1E8EE0B6292B6B7600DEF9BD = {
 			isa = PBXGroup;
 			children = (
+				1E08FE822948B0300073A9BF /* Fonts */,
 				1E8EE13F293F036000DEF9BD /* Profile */,
 				1E8EE0C1292B6B7600DEF9BD /* ImageFeed */,
 				1E8EE0F8292CBC5600DEF9BD /* ImageList */,
@@ -153,6 +167,8 @@
 				1E8EE0CF292B6B7800DEF9BD /* LaunchScreen.storyboard in Resources */,
 				1E8EE0CC292B6B7800DEF9BD /* Assets.xcassets in Resources */,
 				1E8EE0CA292B6B7600DEF9BD /* Main.storyboard in Resources */,
+				1E08FE852948B0800073A9BF /* YS Display-Bold.ttf in Resources */,
+				1E08FE862948B0800073A9BF /* YS Display-Medium.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
