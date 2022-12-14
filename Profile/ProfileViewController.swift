@@ -14,7 +14,7 @@ final class ProfileViewController: UIViewController {
     // MARK: - Public Properties
     
     // MARK: - Private Properties
-    private let profileImageView = UIImageView(image: UIImage(named: "UserPhoto"))
+    private let profileImageView = UIImageView()
     private let userNameLabel = UILabel()
     private let nickNameLabel = UILabel()
     private let userDescriptionLabel = UILabel()
@@ -33,7 +33,7 @@ final class ProfileViewController: UIViewController {
     }
     // MARK: - Private Methods
     private func setProfileImage() {
-        
+        profileImageView.image = UIImage(named: "UserPhoto")
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(profileImageView)
         NSLayoutConstraint.activate([
