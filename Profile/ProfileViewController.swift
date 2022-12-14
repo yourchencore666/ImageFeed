@@ -8,11 +8,7 @@
 import UIKit
 
 final class ProfileViewController: UIViewController {
-    
-    // MARK: - IBOutlets
-    
-    // MARK: - Public Properties
-    
+
     // MARK: - Private Properties
     private let profileImageView = UIImageView()
     private let userNameLabel = UILabel()
@@ -92,7 +88,5 @@ final class ProfileViewController: UIViewController {
             logoutButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -26)
         ])
     }
-    // MARK: - IBActions
-    // MARK: - Table View Data Source
 }
 

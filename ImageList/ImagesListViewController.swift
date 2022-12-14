@@ -11,8 +11,6 @@ final class ImagesListViewController: UIViewController {
     // MARK: - IBOutlets
     @IBOutlet private var tableView: UITableView!
     
-    // MARK: - Public Properties
-    
     // MARK: - Private Properties
     private let showSingleImageSegueIdentifier = "ShowSingleImage"
     private var photosName = [String]()
@@ -22,7 +20,7 @@ final class ImagesListViewController: UIViewController {
         formatter.timeStyle = .none
         return formatter
     }()
-
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,20 +29,15 @@ final class ImagesListViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == showSingleImageSegueIdentifier { // проверяем идентификатор сегвея
-            let viewController = segue.destination as! SingleImageViewController // Делаем преобразования типа для свойства segue.destination к тому типу, который мы ожидаем
-            let indexPath = sender as! IndexPath // Делаем преобразование типа для аргумента sender (мы ожидаем, что там будет indexPath)
-            let image = UIImage(named: photosName[indexPath.row]) // Получаем по индексу название картинки и саму картинку из ресурсов приложения;
-            //_ = viewController.view // хак чтобы инициализировать view до инициализации prepareForSegue
-            viewController.image = image // Передаём эту картинку в imageView внутри SingleImageViewController
+            if let viewController = segue.destination as? SingleImageViewController, let indexPath = sender as? IndexPath {
+                let image = UIImage(named: photosName[indexPath.row]) // Получаем по индексу название картинки и саму картинку из ресурсов приложения;
+                //_ = viewController.view // хак чтобы инициализировать view до инициализации prepareForSegue
+                viewController.image = image // Передаём эту картинку в imageView внутри SingleImageViewController
+            }
         } else {
             super.prepare(for: segue, sender: sender) // Если это неизвестный сегвей, то определяем родительским классом и передаем ему управление.
         }
     }
-    
-    // MARK: - Private Methods
-    
-    // MARK: - IBActions
-
 }
 
     // MARK: - Table View Data Source
@@ -54,7 +47,7 @@ extension ImagesListViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         performSegue(withIdentifier: showSingleImageSegueIdentifier, sender: indexPath)
     }
-   
+    
 }
 
 extension ImagesListViewController: UITableViewDataSource {
