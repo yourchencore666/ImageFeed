@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "logo_of_unsplash.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

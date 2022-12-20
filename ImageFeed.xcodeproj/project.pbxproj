@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		1E08FE852948B0800073A9BF /* YS Display-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1E08FE832948B0800073A9BF /* YS Display-Bold.ttf */; };
 		1E08FE862948B0800073A9BF /* YS Display-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1E08FE842948B0800073A9BF /* YS Display-Medium.ttf */; };
+		1E08FE88295192680073A9BF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E08FE87295192660073A9BF /* Constants.swift */; };
+		1E08FE8A29519BD50073A9BF /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E08FE8929519BD50073A9BF /* AuthViewController.swift */; };
+		1E08FE8D2951A1D00073A9BF /* WebViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E08FE8C2951A1D00073A9BF /* WebViewViewController.swift */; };
 		1E8EE0C3292B6B7600DEF9BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8EE0C2292B6B7600DEF9BD /* AppDelegate.swift */; };
 		1E8EE0C5292B6B7600DEF9BD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8EE0C4292B6B7600DEF9BD /* SceneDelegate.swift */; };
 		1E8EE0C7292B6B7600DEF9BD /* ImagesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8EE0C6292B6B7600DEF9BD /* ImagesListViewController.swift */; };
@@ -23,6 +26,9 @@
 /* Begin PBXFileReference section */
 		1E08FE832948B0800073A9BF /* YS Display-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "YS Display-Bold.ttf"; sourceTree = "<group>"; };
 		1E08FE842948B0800073A9BF /* YS Display-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "YS Display-Medium.ttf"; sourceTree = "<group>"; };
+		1E08FE87295192660073A9BF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		1E08FE8929519BD50073A9BF /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		1E08FE8C2951A1D00073A9BF /* WebViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewViewController.swift; sourceTree = "<group>"; };
 		1E8EE0BF292B6B7600DEF9BD /* ImageFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E8EE0C2292B6B7600DEF9BD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1E8EE0C4292B6B7600DEF9BD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -56,9 +62,19 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		1E08FE8B29519F9A0073A9BF /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				1E08FE8929519BD50073A9BF /* AuthViewController.swift */,
+				1E08FE8C2951A1D00073A9BF /* WebViewViewController.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
 		1E8EE0B6292B6B7600DEF9BD = {
 			isa = PBXGroup;
 			children = (
+				1E08FE8B29519F9A0073A9BF /* Auth */,
 				1E08FE822948B0300073A9BF /* Fonts */,
 				1E8EE13F293F036000DEF9BD /* Profile */,
 				1E8EE0C1292B6B7600DEF9BD /* ImageFeed */,
@@ -80,10 +96,11 @@
 			children = (
 				1E8EE0C2292B6B7600DEF9BD /* AppDelegate.swift */,
 				1E8EE0C4292B6B7600DEF9BD /* SceneDelegate.swift */,
-				1E8EE0C8292B6B7600DEF9BD /* Main.storyboard */,
 				1E8EE0CB292B6B7800DEF9BD /* Assets.xcassets */,
+				1E8EE0C8292B6B7600DEF9BD /* Main.storyboard */,
 				1E8EE0CD292B6B7800DEF9BD /* LaunchScreen.storyboard */,
 				1E8EE0D0292B6B7800DEF9BD /* Info.plist */,
+				1E08FE87295192660073A9BF /* Constants.swift */,
 			);
 			path = ImageFeed;
 			sourceTree = "<group>";
@@ -183,7 +200,10 @@
 				1E8EE0F7292CBC0800DEF9BD /* ImagesListCell.swift in Sources */,
 				1E8EE141293F038000DEF9BD /* ProfileViewController.swift in Sources */,
 				1E8EE0C3292B6B7600DEF9BD /* AppDelegate.swift in Sources */,
+				1E08FE8A29519BD50073A9BF /* AuthViewController.swift in Sources */,
+				1E08FE88295192680073A9BF /* Constants.swift in Sources */,
 				1E922C0B293F7C1600480F71 /* SingleImageViewController.swift in Sources */,
+				1E08FE8D2951A1D00073A9BF /* WebViewViewController.swift in Sources */,
 				1E8EE0C5292B6B7600DEF9BD /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
