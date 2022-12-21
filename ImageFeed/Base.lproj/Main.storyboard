@@ -193,7 +193,7 @@
                                     <wkPreferences key="preferences"/>
                                 </wkWebViewConfiguration>
                             </wkWebView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y5O-qG-hn0">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y5O-qG-hn0" userLabel="Back">
                                 <rect key="frame" x="16" y="59" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="GjE-ex-lrv"/>
@@ -206,25 +206,34 @@
                                     <action selector="didTapBackButton:" destination="2WU-77-eqp" eventType="touchUpInside" id="rwh-Hx-7Ad"/>
                                 </connections>
                             </button>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lTL-5e-WZA">
+                                <rect key="frame" x="0.0" y="83" width="428" height="4"/>
+                                <color key="progressTintColor" name="YP Black"/>
+                            </progressView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="noZ-Qw-WXB"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="lTL-5e-WZA" secondAttribute="trailing" id="4bm-FJ-kSv"/>
                             <constraint firstItem="9wR-Er-R32" firstAttribute="leading" secondItem="qGb-pr-YSE" secondAttribute="leading" id="554-Is-eOg"/>
+                            <constraint firstItem="lTL-5e-WZA" firstAttribute="leading" secondItem="qGb-pr-YSE" secondAttribute="leading" id="CIy-gX-3o9"/>
                             <constraint firstItem="9wR-Er-R32" firstAttribute="top" secondItem="qGb-pr-YSE" secondAttribute="top" id="Dsp-nX-pZm"/>
                             <constraint firstAttribute="trailing" secondItem="9wR-Er-R32" secondAttribute="trailing" id="Q8E-tw-Qye"/>
                             <constraint firstAttribute="bottom" secondItem="9wR-Er-R32" secondAttribute="bottom" id="WVC-s3-lOQ"/>
                             <constraint firstItem="y5O-qG-hn0" firstAttribute="leading" secondItem="noZ-Qw-WXB" secondAttribute="leading" constant="16" id="aun-Ik-WCk"/>
+                            <constraint firstItem="lTL-5e-WZA" firstAttribute="top" secondItem="y5O-qG-hn0" secondAttribute="bottom" id="oJf-aT-ggd"/>
                             <constraint firstItem="y5O-qG-hn0" firstAttribute="top" secondItem="noZ-Qw-WXB" secondAttribute="top" constant="15" id="vs0-xW-FQL"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="backButton" destination="y5O-qG-hn0" id="CYT-Bh-M8s"/>
+                        <outlet property="progressView" destination="lTL-5e-WZA" id="KHq-6f-hDg"/>
                         <outlet property="webView" destination="9wR-Er-R32" id="cFG-jT-Fvd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DVk-1D-vzJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="125" y="660"/>
+            <point key="canvasLocation" x="124.7663551401869" y="659.61123110151198"/>
         </scene>
         <!--SingleImageViewController-->
         <scene sceneID="BZj-en-Nwj">
