@@ -15,9 +15,11 @@ class AuthViewController: UIViewController {
     @IBOutlet private weak var unsplashLogo: UIImageView!
     @IBOutlet private weak var signInButton: UIButton!
     // MARK: - Public Properties
-    
-   private let webViewIdentifier = "ShowWebView"
+    weak var delegate: AuthViewControllerDelegate?
     // MARK: - Private Properties
+    private let webViewIdentifier = "ShowWebView"
+    private let oAuthService = OAuth2Service()
+    private let oAuthStorage = OAuth2TokenStorage()
     // MARK: - Lifecycle
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == webViewIdentifier {
@@ -37,10 +39,26 @@ class AuthViewController: UIViewController {
 
 extension AuthViewController: WebViewViewControllerDelegate {
     func webViewViewController(_ vc: WebViewViewController, didAuthenticateWithCode code: String) {
-        //TODO: process code
+        oAuthService.fetchOAuthToken(code) { [weak self] result in
+            guard let self = self else {return}
+            
+            switch result {
+                
+            case .success(let token):
+                self.oAuthStorage.token = token
+                self.delegate?.authViewController(self, didAuthenticateWithCode: token)
+                print("your token: \(token)")
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
     
     func webViewViewControllerDidCancel(_ vc: WebViewViewController) {
         dismiss(animated: true)
     }
+}
+
+protocol AuthViewControllerDelegate: AnyObject {
+    func authViewController(_ vc: AuthViewController, didAuthenticateWithCode code: String)
 }
