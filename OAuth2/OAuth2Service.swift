@@ -33,14 +33,18 @@ final class OAuth2Service {
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             
             if let error = error {
-                completion(.failure(error))
-                return
+                DispatchQueue.main.async {
+                    completion(.failure(error))
+                    return
+                }
             }
             
             if let response = response as? HTTPURLResponse,
                response.statusCode < 200 || response.statusCode >= 300 {
-                completion(.failure(NetworkError.codeError))
-                return
+                DispatchQueue.main.async {
+                    completion(.failure(NetworkError.codeError))
+                    return
+                }
             }
             
             if let data = data {
@@ -50,7 +54,9 @@ final class OAuth2Service {
                         completion(.success(response.accessToken))
                     }
                 } catch let error {
-                    completion(.failure(error))
+                    DispatchQueue.main.async {
+                        completion(.failure(error))
+                    }
                 }
             }
         }

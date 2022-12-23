@@ -19,13 +19,13 @@ final class WebViewViewController: UIViewController {
     
     // MARK: - Private Properties
     
-    fileprivate let UnsplashAuthorizeURLString = "https://unsplash.com/oauth/authorize"
+    fileprivate let unsplashAuthorizeURLString = "https://unsplash.com/oauth/authorize"
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var urlComponents = URLComponents(string: UnsplashAuthorizeURLString)!
+        var urlComponents = URLComponents(string: unsplashAuthorizeURLString)!
         urlComponents.queryItems = [
             URLQueryItem(name: "client_id", value: accessKey),
             URLQueryItem(name: "redirect_uri", value: redirectUri),
