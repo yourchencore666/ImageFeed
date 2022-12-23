@@ -9,17 +9,18 @@ import UIKit
 
 class AuthViewController: UIViewController {
     
-    
     // MARK: - IBOutlets
-    
     @IBOutlet private weak var unsplashLogo: UIImageView!
     @IBOutlet private weak var signInButton: UIButton!
+    
     // MARK: - Public Properties
     weak var delegate: AuthViewControllerDelegate?
+    
     // MARK: - Private Properties
     private let webViewIdentifier = "ShowWebView"
     private let oAuthService = OAuth2Service()
     private let oAuthStorage = OAuth2TokenStorage()
+    
     // MARK: - Lifecycle
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == webViewIdentifier {
@@ -31,10 +32,6 @@ class AuthViewController: UIViewController {
             super.prepare(for: segue, sender: sender)
         }
     }
-    
-    // MARK: - Private Methods
-    // MARK: - IBActions
-    // MARK: - Table View Data Source
 }
 
 extension AuthViewController: WebViewViewControllerDelegate {
@@ -46,7 +43,7 @@ extension AuthViewController: WebViewViewControllerDelegate {
                 
             case .success(let token):
                 self.oAuthStorage.token = token
-                self.delegate?.authViewController(self, didAuthenticateWithCode: token)
+                self.delegate?.authViewController(self, didAuthenticateWithCode: code)
                 print("your token: \(token)")
             case .failure(let error):
                 print(error)

@@ -24,6 +24,7 @@
 		1E8EE0F7292CBC0800DEF9BD /* ImagesListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8EE0F6292CBC0800DEF9BD /* ImagesListCell.swift */; };
 		1E8EE141293F038000DEF9BD /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8EE140293F038000DEF9BD /* ProfileViewController.swift */; };
 		1E922C0B293F7C1600480F71 /* SingleImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E922C0A293F7C1600480F71 /* SingleImageViewController.swift */; };
+		1EBA45E7295587090061A0D7 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBA45E6295587080061A0D7 /* SplashViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		1E8EE0F6292CBC0800DEF9BD /* ImagesListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListCell.swift; sourceTree = "<group>"; };
 		1E8EE140293F038000DEF9BD /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		1E922C0A293F7C1600480F71 /* SingleImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleImageViewController.swift; sourceTree = "<group>"; };
+		1EBA45E6295587080061A0D7 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 		1E8EE0B6292B6B7600DEF9BD = {
 			isa = PBXGroup;
 			children = (
+				1EBA45E5295586CA0061A0D7 /* SplashViewController */,
 				1E08FE8E295427740073A9BF /* OAuth2 */,
 				1E08FE8B29519F9A0073A9BF /* Auth */,
 				1E08FE822948B0300073A9BF /* Fonts */,
@@ -138,6 +141,14 @@
 				1E8EE140293F038000DEF9BD /* ProfileViewController.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		1EBA45E5295586CA0061A0D7 /* SplashViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1EBA45E6295587080061A0D7 /* SplashViewController.swift */,
+			);
+			path = SplashViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,6 +230,7 @@
 				1E8EE141293F038000DEF9BD /* ProfileViewController.swift in Sources */,
 				1E8EE0C3292B6B7600DEF9BD /* AppDelegate.swift in Sources */,
 				1E08FE92295428FD0073A9BF /* OAuth2Service.swift in Sources */,
+				1EBA45E7295587090061A0D7 /* SplashViewController.swift in Sources */,
 				1E08FE90295427960073A9BF /* OAuthTokenResponseBody.swift in Sources */,
 				1E08FE8A29519BD50073A9BF /* AuthViewController.swift in Sources */,
 				1E08FE88295192680073A9BF /* Constants.swift in Sources */,

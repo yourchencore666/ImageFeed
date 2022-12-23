@@ -11,25 +11,26 @@ import WebKit
 final class WebViewViewController: UIViewController {
     // MARK: - IBOutlets
     @IBOutlet private weak var webView: WKWebView!
-
     @IBOutlet private weak var progressView: UIProgressView!
     @IBOutlet private weak var backButton: UIButton!
+    
     // MARK: - Public Properties
+    weak var delegate: WebViewViewControllerDelegate?
+    
     // MARK: - Private Properties
     
     fileprivate let UnsplashAuthorizeURLString = "https://unsplash.com/oauth/authorize"
-    weak var delegate: WebViewViewControllerDelegate?
-
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         var urlComponents = URLComponents(string: UnsplashAuthorizeURLString)!
         urlComponents.queryItems = [
-        URLQueryItem(name: "client_id", value: accessKey),
-        URLQueryItem(name: "redirect_uri", value: redirectUri),
-        URLQueryItem(name: "response_type", value: "code"),
-        URLQueryItem(name: "scope", value: accessScope)
+            URLQueryItem(name: "client_id", value: accessKey),
+            URLQueryItem(name: "redirect_uri", value: redirectUri),
+            URLQueryItem(name: "response_type", value: "code"),
+            URLQueryItem(name: "scope", value: accessScope)
         ]
         let url = urlComponents.url!
         
@@ -37,7 +38,7 @@ final class WebViewViewController: UIViewController {
         
         webView.load(request)
         webView.navigationDelegate = self
-      
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -55,6 +56,7 @@ final class WebViewViewController: UIViewController {
             super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
         }
     }
+    
     // MARK: - Private Methods
     private func updateProgress() {
         progressView.progress = Float(webView.estimatedProgress)
