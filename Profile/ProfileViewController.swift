@@ -15,17 +15,22 @@ final class ProfileViewController: UIViewController {
     private let nickNameLabel = UILabel()
     private let userDescriptionLabel = UILabel()
     private let logoutButton = UIButton(type: .system)
+    private let oAuthStorage = OAuth2TokenStorage()
+    private var userProfileData: ProfileService.Profile?
+    
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let token = self.oAuthStorage.token ?? "No token"
         
         setProfileImage()
         setUserNameLabel()
         setNickNameLabel()
         setUserDescriptionLabel()
         setLogoutButton()
-        
+        fetchProfile(token: token)
     }
     // MARK: - Private Methods
     private func setProfileImage() {
@@ -41,7 +46,7 @@ final class ProfileViewController: UIViewController {
     }
     
     private func setUserNameLabel() {
-        userNameLabel.text = "Артем Юрченко"
+        userNameLabel.text = "Unknown"
         userNameLabel.textColor = .white
         userNameLabel.font = UIFont.systemFont(ofSize: 23, weight: UIFont.Weight(rawValue: 0.5))
         userNameLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -53,7 +58,7 @@ final class ProfileViewController: UIViewController {
     }
     
     private func setNickNameLabel() {
-        nickNameLabel.text = "@yourchencore"
+        nickNameLabel.text = "@unknown"
         nickNameLabel.textColor = UIColor(named: "YP Gray")
         nickNameLabel.font = UIFont(name: "YS Display-Medium", size: 13)
         nickNameLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -65,7 +70,7 @@ final class ProfileViewController: UIViewController {
     }
     
     private func setUserDescriptionLabel() {
-        userDescriptionLabel.text = "Hello, world!"
+        userDescriptionLabel.text = "description"
         userDescriptionLabel.textColor = .white
         userDescriptionLabel.font = UIFont(name: "YS Display-Medium", size: 13)
         userDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -88,5 +93,24 @@ final class ProfileViewController: UIViewController {
             logoutButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -26)
         ])
     }
+    
+    private func fetchProfile (token: String) {
+           ProfileService().fetchProfile(token) { result in
+               switch result {
+               case .success (let profile):
+                   self.userProfileData = profile
+                   self.userNameLabel.text = profile.name
+                   self.nickNameLabel.text = profile.loginName
+                   self.userDescriptionLabel.text = profile.bio
+                   return
+               case .failure(let error):
+                   print("❌\(error)")
+                   return
+                   
+               }
+
+           }
+       }
+    
 }
 
