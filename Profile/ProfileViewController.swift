@@ -16,21 +16,21 @@ final class ProfileViewController: UIViewController {
     private let userDescriptionLabel = UILabel()
     private let logoutButton = UIButton(type: .system)
     private let oAuthStorage = OAuth2TokenStorage()
-    private var userProfileData: ProfileService.Profile?
+    private let profileService = ProfileService.shared
     
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let token = self.oAuthStorage.token ?? "No token"
-        
+                
         setProfileImage()
         setUserNameLabel()
         setNickNameLabel()
         setUserDescriptionLabel()
         setLogoutButton()
-        fetchProfile(token: token)
+        
+        guard let profile = profileService.profile else {return}
+        updateProfileDetails(profile: profile)
     }
     // MARK: - Private Methods
     private func setProfileImage() {
@@ -94,23 +94,11 @@ final class ProfileViewController: UIViewController {
         ])
     }
     
-    private func fetchProfile (token: String) {
-           ProfileService().fetchProfile(token) { result in
-               switch result {
-               case .success (let profile):
-                   self.userProfileData = profile
-                   self.userNameLabel.text = profile.name
-                   self.nickNameLabel.text = profile.loginName
-                   self.userDescriptionLabel.text = profile.bio
-                   return
-               case .failure(let error):
-                   print("❌\(error)")
-                   return
-                   
-               }
-
-           }
-       }
     
+    private func updateProfileDetails(profile: Profile) {
+        self.userNameLabel.text = profile.name
+        self.nickNameLabel.text = profile.loginName
+        self.userDescriptionLabel.text = profile.bio
+    }
 }
 
