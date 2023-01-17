@@ -10,6 +10,7 @@ import Foundation
 final class OAuth2Service {
     fileprivate let unsplashAuthorizeTokenURLString = "https://unsplash.com/oauth/token"
     private var lastCode: String?
+    private let session = URLSession.shared
     private var task: URLSessionTask?
     private enum NetworkError: Error {
         case codeError
@@ -24,38 +25,20 @@ final class OAuth2Service {
         
         
         let request = makeRequest(code: code)
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            
-            if let error = error {
-                DispatchQueue.main.async {
-                    completion(.failure(error))
-                    return
-                }
-            }
-            
-            if let response = response as? HTTPURLResponse,
-               response.statusCode < 200 || response.statusCode >= 300 {
-                DispatchQueue.main.async {
-                    completion(.failure(NetworkError.codeError))
-                    return
-                }
-            }
-            
-            if let data = data {
-                do {
-                    let response = try JSONDecoder().decode(OAuthTokenResponseBody.self, from: data)
-                    DispatchQueue.main.async {
-                        completion(.success(response.accessToken))
-                        self.task = nil
-                    }
-                } catch let error {
-                    DispatchQueue.main.async {
-                        completion(.failure(error))
-                        self.lastCode = nil
-                    }
+        let task = self.session.objectTask(for: request) { [weak self] (result: Result<OAuthTokenResponseBody, Error>) in
+            guard let self = self else {return}
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let jsonData):
+                    OAuth2TokenStorage().token = jsonData.accessToken
+                    completion(.success(jsonData.accessToken))
+                    self.task = nil
+                case .failure:
+                    self.lastCode = nil
                 }
             }
         }
+        self.task = task
         task.resume()
     }
     

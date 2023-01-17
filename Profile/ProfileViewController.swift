@@ -8,7 +8,7 @@
 import UIKit
 
 final class ProfileViewController: UIViewController {
-
+    
     // MARK: - Private Properties
     private let profileImageView = UIImageView()
     private let userNameLabel = UILabel()
@@ -17,22 +17,39 @@ final class ProfileViewController: UIViewController {
     private let logoutButton = UIButton(type: .system)
     private let oAuthStorage = OAuth2TokenStorage()
     private let profileService = ProfileService.shared
+    private var profileImageServiceObserver: NSObjectProtocol?
     
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        
+        setUI()
+        
+        guard let profile = profileService.profile else {return}
+        updateProfileDetails(profile: profile)
+        
+        profileImageServiceObserver = NotificationCenter.default
+            .addObserver(
+                forName: ProfileImageService.DidChangeNotification,
+                object: nil,
+                queue: .main
+            ) { [weak self] _ in
+                guard let self = self else { return }
+                self.updateAvatar()
+            }
+        updateAvatar()
+    }
+    
+    // MARK: - Private Methods
+    private func setUI() {
         setProfileImage()
         setUserNameLabel()
         setNickNameLabel()
         setUserDescriptionLabel()
         setLogoutButton()
-        
-        guard let profile = profileService.profile else {return}
-        updateProfileDetails(profile: profile)
     }
-    // MARK: - Private Methods
+    
     private func setProfileImage() {
         profileImageView.image = UIImage(named: "UserPhoto")
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -99,6 +116,14 @@ final class ProfileViewController: UIViewController {
         self.userNameLabel.text = profile.name
         self.nickNameLabel.text = profile.loginName
         self.userDescriptionLabel.text = profile.bio
+    }
+    
+    private func updateAvatar() {
+        guard
+            let profileImageURL = ProfileImageService.shared.avatarURL,
+            let url = URL(string: profileImageURL)
+        else { return }
+        // TODO [Sprint 11] Обновить аватар, используя Kingfisher
     }
 }
 

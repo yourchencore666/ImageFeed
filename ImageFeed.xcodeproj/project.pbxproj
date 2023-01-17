@@ -30,6 +30,8 @@
 		1EBA45EE296EC6600061A0D7 /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBA45ED296EC6600061A0D7 /* ProfileService.swift */; };
 		1EBA45F5296FD2C90061A0D7 /* URLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBA45F4296FD2C90061A0D7 /* URLSession.swift */; };
 		1EBA45F8297134EE0061A0D7 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBA45F7297134EE0061A0D7 /* Profile.swift */; };
+		1EBA45FA297536FC0061A0D7 /* ProfileImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBA45F9297536FB0061A0D7 /* ProfileImageService.swift */; };
+		1EBA45FC2975381E0061A0D7 /* UserResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBA45FB2975381E0061A0D7 /* UserResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +59,8 @@
 		1EBA45ED296EC6600061A0D7 /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
 		1EBA45F4296FD2C90061A0D7 /* URLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSession.swift; sourceTree = "<group>"; };
 		1EBA45F7297134EE0061A0D7 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		1EBA45F9297536FB0061A0D7 /* ProfileImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageService.swift; sourceTree = "<group>"; };
+		1EBA45FB2975381E0061A0D7 /* UserResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +156,7 @@
 			children = (
 				1E8EE140293F038000DEF9BD /* ProfileViewController.swift */,
 				1EBA45ED296EC6600061A0D7 /* ProfileService.swift */,
+				1EBA45F9297536FB0061A0D7 /* ProfileImageService.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -177,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				1EBA45F7297134EE0061A0D7 /* Profile.swift */,
+				1EBA45FB2975381E0061A0D7 /* UserResult.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -271,10 +277,12 @@
 				1EBA45E7295587090061A0D7 /* SplashViewController.swift in Sources */,
 				1E08FE90295427960073A9BF /* OAuthTokenResponseBody.swift in Sources */,
 				1E08FE8A29519BD50073A9BF /* AuthViewController.swift in Sources */,
+				1EBA45FC2975381E0061A0D7 /* UserResult.swift in Sources */,
 				1E08FE88295192680073A9BF /* Constants.swift in Sources */,
 				1E922C0B293F7C1600480F71 /* SingleImageViewController.swift in Sources */,
 				1E08FE8D2951A1D00073A9BF /* WebViewViewController.swift in Sources */,
 				1E8EE0C5292B6B7600DEF9BD /* SceneDelegate.swift in Sources */,
+				1EBA45FA297536FC0061A0D7 /* ProfileImageService.swift in Sources */,
 				1EBA45EC296EBC240061A0D7 /* UIBlockingProgressHUD.swift in Sources */,
 				1EBA45EE296EC6600061A0D7 /* ProfileService.swift in Sources */,
 			);

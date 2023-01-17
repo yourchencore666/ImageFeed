@@ -20,10 +20,20 @@ final class WebViewViewController: UIViewController {
     // MARK: - Private Properties
     
     fileprivate let unsplashAuthorizeURLString = "https://unsplash.com/oauth/authorize"
+    private var estimatedProgressObservation: NSKeyValueObservation?
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setNeedsStatusBarAppearanceUpdate()
+        estimatedProgressObservation = webView.observe(
+                    \.estimatedProgress,
+                     options: [],
+                     changeHandler: { [ weak self] _, _ in
+                         guard let self = self else {return}
+                         self.updateProgress()
+                     })
         
         var urlComponents = URLComponents(string: unsplashAuthorizeURLString)!
         urlComponents.queryItems = [
@@ -39,22 +49,6 @@ final class WebViewViewController: UIViewController {
         webView.load(request)
         webView.navigationDelegate = self
         
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        webView.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: nil)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        webView.removeObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress))
-    }
-    
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        if keyPath == #keyPath(WKWebView.estimatedProgress) {
-            updateProgress()
-        } else {
-            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
-        }
     }
     
     // MARK: - Private Methods
