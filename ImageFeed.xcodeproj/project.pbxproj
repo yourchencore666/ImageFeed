@@ -34,6 +34,7 @@
 		1EBA45FC2975381E0061A0D7 /* UserResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBA45FB2975381E0061A0D7 /* UserResult.swift */; };
 		1EBA45FF29767E0F0061A0D7 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBA45FE29767E0F0061A0D7 /* AlertViewController.swift */; };
 		1EBA460129767EAB0061A0D7 /* AlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBA460029767EAB0061A0D7 /* AlertModel.swift */; };
+		1EBA460429768E220061A0D7 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 1EBA460329768E220061A0D7 /* Kingfisher */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1EBA460429768E220061A0D7 /* Kingfisher in Frameworks */,
 				1EBA45EA296E89560061A0D7 /* ProgressHUD in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -219,6 +221,7 @@
 			name = ImageFeed;
 			packageProductDependencies = (
 				1EBA45E9296E89560061A0D7 /* ProgressHUD */,
+				1EBA460329768E220061A0D7 /* Kingfisher */,
 			);
 			productName = ImageFeed;
 			productReference = 1E8EE0BF292B6B7600DEF9BD /* ImageFeed.app */;
@@ -250,6 +253,7 @@
 			mainGroup = 1E8EE0B6292B6B7600DEF9BD;
 			packageReferences = (
 				1EBA45E8296E89560061A0D7 /* XCRemoteSwiftPackageReference "ProgressHUD" */,
+				1EBA460229768E210061A0D7 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 1E8EE0C0292B6B7600DEF9BD /* Products */;
 			projectDirPath = "";
@@ -458,7 +462,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -488,7 +492,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -534,6 +538,14 @@
 				version = 13.6.2;
 			};
 		};
+		1EBA460229768E210061A0D7 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = exactVersion;
+				version = 7.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -541,6 +553,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1EBA45E8296E89560061A0D7 /* XCRemoteSwiftPackageReference "ProgressHUD" */;
 			productName = ProgressHUD;
+		};
+		1EBA460329768E220061A0D7 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1EBA460229768E210061A0D7 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

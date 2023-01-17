@@ -15,12 +15,11 @@ final class AlertViewController {
             message: model.message,
             preferredStyle: .alert)
                 
-        let action = UIAlertAction(title: model.buttonText, style: .default
-        ){ _ in
+        let action = UIAlertAction(title: model.buttonText, style: .default) { _ in
             model.completion()
         }
         alertController.addAction(action)
-            vc.present(alertController, animated: true)
+        vc.present(alertController, animated: true)
     }
     
 }

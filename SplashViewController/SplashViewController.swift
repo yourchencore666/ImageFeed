@@ -91,17 +91,12 @@ extension SplashViewController: AuthViewControllerDelegate {
     
     private func fetchProfile(token: String) {
             profileService.fetchProfile(token) { [weak self] result in
+                guard let self = self else { return }
                 DispatchQueue.main.async {
-                    guard let self = self else { return }
                     switch result {
                     case .success:
-                        ProfileImageService.shared.fetchProfileImageURL(self.profileService.profile?.username ?? "nil") { result in
-                            switch result {
-                            case .success(let avatarURL):
-                                self.profileImageService.setAvatarUrlString(avatarUrl: avatarURL)
-                            case .failure:
-                                return
-                            }
+                        guard let username = self.profileService.profile?.username else { return }
+                        self.profileImageService.fetchProfileImageURL(username: username) { _ in
                         }
                         self.switchToTabBarController()
                     case .failure:
@@ -115,9 +110,7 @@ extension SplashViewController: AuthViewControllerDelegate {
     private func showError() {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else {return}
-            let alertModel = AlertModel(title: "Что-то пошло не так", message: "Не удалось войти в систему", buttonText: "Ок") {
-               
-            }
+            let alertModel = AlertModel(title: "Что-то пошло не так", message: "Не удалось войти в систему", buttonText: "Ок") { }
             self.alertController.showAlert(vc: self, model: alertModel)
         }
     }

@@ -24,7 +24,7 @@ final class ProfileImageService {
     
     let queue = DispatchQueue(label: "profileImage.service.queue", qos: .unspecified)
     
-    func fetchProfileImageURL(_ username: String, completion: @escaping (Result<String, Error>) -> Void) {
+    func fetchProfileImageURL(username: String, completion: @escaping (Result<String, Error>) -> Void) {
         assert(Thread.isMainThread)
         if lastToken == token { return }
         task?.cancel()
@@ -37,31 +37,31 @@ final class ProfileImageService {
         let request = makeRequest(username: username, token: token)
         let task = session.objectTask(for: request) { [weak self] (result: Result<UserResult, Error>) in
             guard let self = self else { return }
-            self.queue.async {
-                switch result {
-                case .success(let result):
-                    self.avatarURL = result.profileImage.small
-                    completion(.success(result.profileImage.small))
-                case .failure(let error):
-                    completion(.failure(error))
-                    return
-                }
+            switch result {
+            case .success(let decodedObject):
+                let avatarURL = ProfileImage(decodedData: decodedObject)
+                self.avatarURL = avatarURL.profileImage["large"]
+                completion(.success(self.avatarURL ?? ""))
+                NotificationCenter.default.post(
+                    name: ProfileImageService.DidChangeNotification,
+                    object: self,
+                    userInfo: ["URL": self.avatarURL ?? ""])
+            case .failure(let error):
+                completion(.failure(error))
+                print(error)
             }
         }
+        self.task = task
         task.resume()
     }
     
     
     
     private func makeRequest(username: String, token: String) -> URLRequest {
-        guard let url = URL(string: defaultBaseUrl.absoluteString + "/me") else { fatalError("Failed to create URL") }
+        guard let url = URL(string: defaultBaseUrl.absoluteString + "/users/" + username) else { fatalError("Failed to create URL") }
         var request = URLRequest(url: url)
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         return request
-    }
-    
-    func setAvatarUrlString(avatarUrl: String) {
-        avatarURL = avatarUrl
     }
     
 }

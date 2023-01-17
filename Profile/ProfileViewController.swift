@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class ProfileViewController: UIViewController {
     
@@ -119,11 +120,23 @@ final class ProfileViewController: UIViewController {
     }
     
     private func updateAvatar() {
-        guard
-            let profileImageURL = ProfileImageService.shared.avatarURL,
-            let url = URL(string: profileImageURL)
-        else { return }
-        // TODO [Sprint 11] Обновить аватар, используя Kingfisher
-    }
+          guard let profileImageURL = ProfileImageService.shared.avatarURL,
+                let url = URL(string: profileImageURL)
+          else { return }
+          let cache = ImageCache.default
+          cache.clearMemoryCache()
+          cache.clearDiskCache()
+          
+          let processor = RoundCornerImageProcessor(cornerRadius: profileImageView.frame.width)
+        profileImageView.kf.indicatorType = .activity
+        profileImageView.kf.setImage(with: url, placeholder: UIImage(named: "logo"), options: [.processor(processor)]) { result in
+              switch result {
+              case .success(let value):
+                  print("Аватарка \(value.image) была успешно загружена и заменена в профиле")
+              case .failure(let error):
+                  print(error)
+              }
+          }
+      }
 }
 
