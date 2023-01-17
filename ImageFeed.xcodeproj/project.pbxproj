@@ -32,6 +32,8 @@
 		1EBA45F8297134EE0061A0D7 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBA45F7297134EE0061A0D7 /* Profile.swift */; };
 		1EBA45FA297536FC0061A0D7 /* ProfileImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBA45F9297536FB0061A0D7 /* ProfileImageService.swift */; };
 		1EBA45FC2975381E0061A0D7 /* UserResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBA45FB2975381E0061A0D7 /* UserResult.swift */; };
+		1EBA45FF29767E0F0061A0D7 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBA45FE29767E0F0061A0D7 /* AlertViewController.swift */; };
+		1EBA460129767EAB0061A0D7 /* AlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBA460029767EAB0061A0D7 /* AlertModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +63,8 @@
 		1EBA45F7297134EE0061A0D7 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		1EBA45F9297536FB0061A0D7 /* ProfileImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageService.swift; sourceTree = "<group>"; };
 		1EBA45FB2975381E0061A0D7 /* UserResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResult.swift; sourceTree = "<group>"; };
+		1EBA45FE29767E0F0061A0D7 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
+		1EBA460029767EAB0061A0D7 /* AlertModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +110,7 @@
 		1E8EE0B6292B6B7600DEF9BD = {
 			isa = PBXGroup;
 			children = (
+				1EBA45FD29767DE30061A0D7 /* AlertViewController */,
 				1EBA45F6297134D00061A0D7 /* Models */,
 				1EBA45F3296FD2AF0061A0D7 /* Helper */,
 				1EBA45E5295586CA0061A0D7 /* SplashViewController */,
@@ -183,8 +188,17 @@
 			children = (
 				1EBA45F7297134EE0061A0D7 /* Profile.swift */,
 				1EBA45FB2975381E0061A0D7 /* UserResult.swift */,
+				1EBA460029767EAB0061A0D7 /* AlertModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		1EBA45FD29767DE30061A0D7 /* AlertViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1EBA45FE29767E0F0061A0D7 /* AlertViewController.swift */,
+			);
+			path = AlertViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -269,6 +283,8 @@
 				1EBA45F8297134EE0061A0D7 /* Profile.swift in Sources */,
 				1E08FE94295430330073A9BF /* OAuth2TokenStorage.swift in Sources */,
 				1E8EE0C7292B6B7600DEF9BD /* ImagesListViewController.swift in Sources */,
+				1EBA45FF29767E0F0061A0D7 /* AlertViewController.swift in Sources */,
+				1EBA460129767EAB0061A0D7 /* AlertModel.swift in Sources */,
 				1EBA45F5296FD2C90061A0D7 /* URLSession.swift in Sources */,
 				1E8EE0F7292CBC0800DEF9BD /* ImagesListCell.swift in Sources */,
 				1E8EE141293F038000DEF9BD /* ProfileViewController.swift in Sources */,
