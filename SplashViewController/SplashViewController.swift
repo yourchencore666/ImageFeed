@@ -42,36 +42,6 @@ final class SplashViewController: UIViewController {
         }
     }
     
-}
-
-extension SplashViewController {
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Проверим что переходим на авторизацию
-        if segue.identifier == showAuthenticationScreenSegueIdentifier {
-            // Добираемся до первого контроллера в навигации
-            guard
-                let navigationController = segue.destination as? UINavigationController,
-                let viewController = navigationController.viewControllers[0] as? AuthViewController
-            else {fatalError("Failed to prepare for \(showAuthenticationScreenSegueIdentifier)")}
-            // установим делегатом контроллера наш SplashViewController
-            viewController.delegate = self
-        } else {
-            super.prepare(for: segue, sender: sender)
-        }
-    }
-}
-
-extension SplashViewController: AuthViewControllerDelegate {
-    func authViewController(_ vc: AuthViewController, didAuthenticateWithCode code: String) {
-        UIBlockingProgressHUD.show()
-        dismiss(animated: true) { [weak self] in
-            DispatchQueue.main.async {
-                guard let self = self else { return }
-                UIBlockingProgressHUD.dismiss()
-                self.fetchOAuthToken(code)
-            }
-        }
-    }
     
     private func fetchOAuthToken(_ code: String) {
         oAuthService.fetchOAuthToken(code) { [weak self] result in
@@ -112,6 +82,37 @@ extension SplashViewController: AuthViewControllerDelegate {
             guard let self = self else {return}
             let alertModel = AlertModel(title: "Что-то пошло не так", message: "Не удалось войти в систему", buttonText: "Ок") { }
             self.alertController.showAlert(vc: self, model: alertModel)
+        }
+    }
+    
+}
+
+extension SplashViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Проверим что переходим на авторизацию
+        if segue.identifier == showAuthenticationScreenSegueIdentifier {
+            // Добираемся до первого контроллера в навигации
+            guard
+                let navigationController = segue.destination as? UINavigationController,
+                let viewController = navigationController.viewControllers[0] as? AuthViewController
+            else {fatalError("Failed to prepare for \(showAuthenticationScreenSegueIdentifier)")}
+            // установим делегатом контроллера наш SplashViewController
+            viewController.delegate = self
+        } else {
+            super.prepare(for: segue, sender: sender)
+        }
+    }
+}
+
+extension SplashViewController: AuthViewControllerDelegate {
+    func authViewController(_ vc: AuthViewController, didAuthenticateWithCode code: String) {
+        UIBlockingProgressHUD.show()
+        dismiss(animated: true) { [weak self] in
+            DispatchQueue.main.async {
+                guard let self = self else { return }
+                UIBlockingProgressHUD.dismiss()
+                self.fetchOAuthToken(code)
+            }
         }
     }
 }
