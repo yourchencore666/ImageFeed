@@ -8,7 +8,10 @@
 import Foundation
 
 private enum CodingKeysForProfileResult: String, CodingKey {
-    case username, first_name, last_name, bio
+    case username = "user_name"
+    case firstName = "first_name"
+    case lastName = "last_name"
+    case bio
 }
 
 struct ProfileResult: Codable {
@@ -19,23 +22,30 @@ struct ProfileResult: Codable {
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeysForProfileResult.self)
-        userName = try container.decode(String.self, forKey: .username)
-        firstName = try container.decode(String.self, forKey: .first_name)
-        lastName = try container.decode(String.self, forKey: .last_name)
-        bio = try container.decode(String.self, forKey: .bio)
+        userName = try container.decodeIfPresent(String.self, forKey: .username)
+        firstName = try container.decodeIfPresent(String.self, forKey: .firstName)
+        lastName = try container.decodeIfPresent(String.self, forKey: .lastName)
+        bio = try container.decodeIfPresent(String.self, forKey: .bio)
     }
 }
 
-struct Profile {
+struct Profile: Decodable {
     let username: String
     let name: String
-    let loginName: String
     let bio: String
-    
-    init(username: String, name: String, loginName: String, bio: String) {
-        self.username = username
-        self.name = name
-        self.loginName = loginName
-        self.bio = bio
+    var login: String {"@\(username)"}
+
+    enum CodingKeys: String, CodingKey {
+        case username = "username"
+        case name = "name"
+        case bio = "bio"
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.name = try container.decode(String.self, forKey: .name)
+
+        bio = try container.decodeIfPresent(String.self, forKey: .bio) ?? ""
+        username = try container.decode(String.self, forKey: .username)
     }
 }

@@ -17,14 +17,14 @@ final class ProfileImageService {
     private var task: URLSessionTask?
     private var lastToken: String?
     private(set) var avatarURL: String?
-    private let token = OAuth2TokenStorage().token
+    private init() {}
     
     static let shared = ProfileImageService()
     static let DidChangeNotification = Notification.Name(rawValue: "ProfileImageProviderDidChange")
     
     let queue = DispatchQueue(label: "profileImage.service.queue", qos: .unspecified)
     
-    func fetchProfileImageURL(username: String, completion: @escaping (Result<String, Error>) -> Void) {
+    func fetchProfileImageURL(username: String, token: String?, completion: @escaping (Result<Void, Error>) -> Void) {
         assert(Thread.isMainThread)
         if lastToken == token { return }
         task?.cancel()
@@ -39,13 +39,14 @@ final class ProfileImageService {
             guard let self = self else { return }
             switch result {
             case .success(let decodedObject):
-                let avatarURL = ProfileImage(decodedData: decodedObject)
-                self.avatarURL = avatarURL.profileImage["large"]
-                completion(.success(self.avatarURL ?? ""))
-                NotificationCenter.default.post(
-                    name: ProfileImageService.DidChangeNotification,
-                    object: self,
-                    userInfo: ["URL": self.avatarURL ?? ""])
+                if let image = decodedObject.profileImage?.image {
+                    self.avatarURL = image
+                    NotificationCenter.default.post(
+                        name: ProfileImageService.DidChangeNotification,
+                        object: self,
+                        userInfo: ["URL": image])
+                }
+                completion(.success(()))
             case .failure(let error):
                 completion(.failure(error))
                 print(error)

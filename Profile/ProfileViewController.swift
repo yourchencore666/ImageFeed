@@ -115,7 +115,7 @@ final class ProfileViewController: UIViewController {
     
     private func updateProfileDetails(profile: Profile) {
         self.userNameLabel.text = profile.name
-        self.nickNameLabel.text = profile.loginName
+        self.nickNameLabel.text = profile.login
         self.userDescriptionLabel.text = profile.bio
     }
     
@@ -123,6 +123,7 @@ final class ProfileViewController: UIViewController {
           guard let profileImageURL = ProfileImageService.shared.avatarURL,
                 let url = URL(string: profileImageURL)
           else { return }
+        print(profileImageURL)
           let cache = ImageCache.default
           cache.clearMemoryCache()
           cache.clearDiskCache()

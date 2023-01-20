@@ -1,15 +1,17 @@
+import Foundation
+
 struct UserResult: Codable {
-    let profileImage: [String: String]
-    
+    let profileImage: ProfileImage?
+
     enum CodingKeys: String, CodingKey {
         case profileImage = "profile_image"
     }
 }
 
 struct ProfileImage: Codable {
-    let profileImage: [String: String]
-    
-    init(decodedData: UserResult) {
-        self.profileImage = decodedData.profileImage
-    }
+    let small: String?
+    let medium: String?
+    let large: String?
+
+    var image: String? { large ?? medium ?? small }
 }

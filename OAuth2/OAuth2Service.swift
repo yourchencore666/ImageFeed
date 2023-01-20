@@ -27,7 +27,6 @@ final class OAuth2Service {
         let request = makeRequest(code: code)
         let task = self.session.objectTask(for: request) { [weak self] (result: Result<OAuthTokenResponseBody, Error>) in
             guard let self = self else {return}
-            DispatchQueue.main.async {
                 switch result {
                 case .success(let jsonData):
                     OAuth2TokenStorage().token = jsonData.accessToken
@@ -36,7 +35,6 @@ final class OAuth2Service {
                 case .failure:
                     self.lastCode = nil
                 }
-            }
         }
         self.task = task
         task.resume()

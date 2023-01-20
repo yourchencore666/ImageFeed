@@ -13,10 +13,11 @@ final class ProfileService {
     private var lastToken: String?
     private(set) var profile: Profile?
     
+    
     static let shared = ProfileService()
     
     
-    func fetchProfile(_ token: String, completion: @escaping (Result<Profile, Error>) -> Void) {
+    func fetchProfile(_ token: String, completion: @escaping (Result<String, Error>) -> Void) {
         assert(Thread.isMainThread)
         if lastToken == token { return }
         task?.cancel()
@@ -24,20 +25,17 @@ final class ProfileService {
         
         let request = makeRequest(token: token)
         let task = self.session.objectTask(for: request) { [weak self]
-            (result: Result<ProfileResult, Error>) in
+            (result: Result<Profile, Error>) in
             guard let self = self else { return }
-            DispatchQueue.main.async {
                 switch result {
-                case .success(let jsonData):
-                    self.profile = self.convertProfileResultToProfile(profileResult: jsonData)
-                    guard let profile = self.profile else {return}
-                    completion(.success(profile))
+                case .success(let profile):
+                    self.profile = profile
+                    completion(.success(profile.username))
                     self.task = nil
                 case .failure:
                     self.lastToken = nil
                     return
                 }
-            }
         }
         self.task = task
         task.resume()
@@ -49,14 +47,4 @@ final class ProfileService {
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         return request
     }
-    
-    private func convertProfileResultToProfile(profileResult: ProfileResult) -> Profile {
-        return Profile(
-            username: profileResult.userName ?? "",
-            name: (profileResult.firstName ?? "") + " " + (profileResult.lastName ?? ""),
-            loginName: "@" + (profileResult.userName ?? ""),
-            bio: profileResult.bio ?? ""
-        )
-    }
-    
 }

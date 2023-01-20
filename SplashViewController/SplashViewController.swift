@@ -35,10 +35,15 @@ final class SplashViewController: UIViewController {
     private func checkAuthorization() {
         
         if let token = oAuthTokenStorage.token {
-            switchToTabBarController()
+            UIBlockingProgressHUD.show()
             fetchProfile(token: token)
         } else {
-            performSegue(withIdentifier: showAuthenticationScreenSegueIdentifier, sender: nil)
+            let storyboard = UIStoryboard(name: "Main", bundle: .main)
+            guard let authViewController = storyboard.instantiateViewController(withIdentifier: "AuthViewController")
+                    as? AuthViewController else {return}
+            authViewController.delegate = self
+            authViewController.modalPresentationStyle = .fullScreen
+            present(authViewController, animated: true)
         }
     }
     
@@ -49,7 +54,6 @@ final class SplashViewController: UIViewController {
                 guard let self = self else { return }
                 switch result {
                 case .success(let token):
-                    self.switchToTabBarController()
                     self.fetchProfile(token: token)
                 case .failure:
                     UIBlockingProgressHUD.dismiss()
@@ -60,22 +64,21 @@ final class SplashViewController: UIViewController {
     }
     
     private func fetchProfile(token: String) {
-            profileService.fetchProfile(token) { [weak self] result in
-                guard let self = self else { return }
-                DispatchQueue.main.async {
-                    switch result {
-                    case .success:
-                        guard let username = self.profileService.profile?.username else { return }
-                        self.profileImageService.fetchProfileImageURL(username: username) { _ in
-                        }
-                        self.switchToTabBarController()
-                    case .failure:
-                        self.showError()
-                        break
-                    }
+        profileService.fetchProfile(token) { [weak self] result in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let username):
+                    ProfileImageService.shared.fetchProfileImageURL(username: username, token: token) { _ in }
+                    self.switchToTabBarController()
+                case .failure:
+                    self.showError()
+                    break
                 }
+                UIBlockingProgressHUD.dismiss()
             }
         }
+    }
     
     private func showError() {
         DispatchQueue.main.async { [weak self] in
@@ -106,11 +109,10 @@ extension SplashViewController {
 
 extension SplashViewController: AuthViewControllerDelegate {
     func authViewController(_ vc: AuthViewController, didAuthenticateWithCode code: String) {
-        UIBlockingProgressHUD.show()
         dismiss(animated: true) { [weak self] in
             DispatchQueue.main.async {
                 guard let self = self else { return }
-                UIBlockingProgressHUD.dismiss()
+                UIBlockingProgressHUD.show()
                 self.fetchOAuthToken(code)
             }
         }
