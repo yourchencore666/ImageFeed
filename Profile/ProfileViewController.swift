@@ -128,7 +128,7 @@ final class ProfileViewController: UIViewController {
           cache.clearMemoryCache()
           cache.clearDiskCache()
           
-          let processor = RoundCornerImageProcessor(cornerRadius: profileImageView.frame.width)
+        let processor = RoundCornerImageProcessor(cornerRadius: 50, backgroundColor: .clear)
         profileImageView.kf.indicatorType = .activity
         profileImageView.kf.setImage(with: url, placeholder: UIImage(named: "logo"), options: [.processor(processor)]) { result in
               switch result {
