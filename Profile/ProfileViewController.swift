@@ -6,28 +6,51 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class ProfileViewController: UIViewController {
-
+    
     // MARK: - Private Properties
     private let profileImageView = UIImageView()
     private let userNameLabel = UILabel()
     private let nickNameLabel = UILabel()
     private let userDescriptionLabel = UILabel()
     private let logoutButton = UIButton(type: .system)
+    private let oAuthStorage = OAuth2TokenStorage()
+    private let profileService = ProfileService.shared
+    private var profileImageServiceObserver: NSObjectProtocol?
+    
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setUI()
+        
+        guard let profile = profileService.profile else {return}
+        updateProfileDetails(profile: profile)
+        
+        profileImageServiceObserver = NotificationCenter.default
+            .addObserver(
+                forName: ProfileImageService.DidChangeNotification,
+                object: nil,
+                queue: .main
+            ) { [weak self] _ in
+                guard let self = self else { return }
+                self.updateAvatar()
+            }
+        updateAvatar()
+    }
+    
+    // MARK: - Private Methods
+    private func setUI() {
         setProfileImage()
         setUserNameLabel()
         setNickNameLabel()
         setUserDescriptionLabel()
         setLogoutButton()
-        
     }
-    // MARK: - Private Methods
+    
     private func setProfileImage() {
         profileImageView.image = UIImage(named: "UserPhoto")
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -41,7 +64,7 @@ final class ProfileViewController: UIViewController {
     }
     
     private func setUserNameLabel() {
-        userNameLabel.text = "Артем Юрченко"
+        userNameLabel.text = "Unknown"
         userNameLabel.textColor = .white
         userNameLabel.font = UIFont.systemFont(ofSize: 23, weight: UIFont.Weight(rawValue: 0.5))
         userNameLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -53,7 +76,7 @@ final class ProfileViewController: UIViewController {
     }
     
     private func setNickNameLabel() {
-        nickNameLabel.text = "@yourchencore"
+        nickNameLabel.text = "@unknown"
         nickNameLabel.textColor = UIColor(named: "YP Gray")
         nickNameLabel.font = UIFont(name: "YS Display-Medium", size: 13)
         nickNameLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -65,7 +88,7 @@ final class ProfileViewController: UIViewController {
     }
     
     private func setUserDescriptionLabel() {
-        userDescriptionLabel.text = "Hello, world!"
+        userDescriptionLabel.text = "description"
         userDescriptionLabel.textColor = .white
         userDescriptionLabel.font = UIFont(name: "YS Display-Medium", size: 13)
         userDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -88,5 +111,33 @@ final class ProfileViewController: UIViewController {
             logoutButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -26)
         ])
     }
+    
+    
+    private func updateProfileDetails(profile: Profile) {
+        self.userNameLabel.text = profile.name
+        self.nickNameLabel.text = profile.login
+        self.userDescriptionLabel.text = profile.bio
+    }
+    
+    private func updateAvatar() {
+          guard let profileImageURL = ProfileImageService.shared.avatarURL,
+                let url = URL(string: profileImageURL)
+          else { return }
+        print(profileImageURL)
+          let cache = ImageCache.default
+          cache.clearMemoryCache()
+          cache.clearDiskCache()
+          
+        let processor = RoundCornerImageProcessor(cornerRadius: 50, backgroundColor: .clear)
+        profileImageView.kf.indicatorType = .activity
+        profileImageView.kf.setImage(with: url, placeholder: UIImage(named: "logo"), options: [.processor(processor)]) { result in
+              switch result {
+              case .success(let value):
+                  print("Аватарка \(value.image) была успешно загружена и заменена в профиле")
+              case .failure(let error):
+                  print(error)
+              }
+          }
+      }
 }
 
